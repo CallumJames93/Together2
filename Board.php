@@ -1,39 +1,34 @@
+<?php
+require_once 'header.php';
 
-    <?php
-    require_once 'header.php';
-    ?>
-    <body>
+$sql = "SELECT * FROM user_info";
+$result = $conn->query($sql)
+
+?>
+<!-- Search Functionalty 
+<body>
+  <div class="input-group">
+    <form action="search.php" method="GET">
+      <input type="text" name="query" class="form-control" placeholder="Search for...">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">Go!</button>
+      </span>
+    </div>
+  </form>-->
 <div class="row">
+<?php while($rows = $result -> fetch_assoc()) { ?>
   <div class="col-sm-6 col-md-4">
     <div class="thumbnail" id="ads">
-      <img src="" alt="">
+    <h3><?php echo $rows["compname"]?></h3>
+      <?php echo "<img src='images/" . $rows["logoName"] . "'>"?>
       <div class="caption">
-        <h3>Company 1</h3>
-        <p>...</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+        <p><?php echo $rows["bio"]?></p>
+        <p>Telephone: <?php echo $rows["telephone"]?></p>
+        <p><a href="#" class="btn btn-primary" role="button">Website</a>
       </div>
     </div>
   </div>
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail" id="ads">
-      <img src="" alt="">
-      <div class="caption">
-        <h3>Company 2</h3>
-        <p>...</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail" id="ads">
-      <img src="" alt="">
-      <div class="caption">
-        <h3>Company 3</h3>
-        <p>...</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-      </div>
-    </div>
-  </div>
+  <?php } ?>
 </div>
     </body>
     <?php
